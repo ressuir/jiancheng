@@ -1,0 +1,153 @@
+{
+  "format": "jiancheng.plan",
+  "schemaVersion": 1,
+  "timezone": "Asia/Shanghai",
+  "days": [
+    {
+      "date": "2026-07-19",
+      "tasks": [
+        {
+          "id": "dense-demo-20260719-01",
+          "title": "晨间计划",
+          "details": "快速确认今天最重要的三件事",
+          "start": "06:30",
+          "end": "07:00",
+          "category": "生活"
+        },
+        {
+          "id": "dense-demo-20260719-02",
+          "title": "早餐和整理房间",
+          "start": "07:00",
+          "end": "07:30",
+          "category": "生活"
+        },
+        {
+          "id": "dense-demo-20260719-03",
+          "title": "通勤准备",
+          "start": "07:30",
+          "end": "08:00",
+          "category": "出行"
+        },
+        {
+          "id": "dense-demo-20260719-04",
+          "title": "英语听力精练",
+          "details": "完成一套听力并复盘错题",
+          "start": "08:00",
+          "end": "08:40",
+          "category": "英语"
+        },
+        {
+          "id": "dense-demo-20260719-05",
+          "title": "检查本周目标",
+          "start": "08:45",
+          "end": "09:15",
+          "category": "计划"
+        },
+        {
+          "id": "dense-demo-20260719-06",
+          "title": "学习 Spring 事务",
+          "details": "理解传播行为、隔离级别和常见失效场景",
+          "start": "09:20",
+          "end": "10:20",
+          "category": "后端"
+        },
+        {
+          "id": "dense-demo-20260719-07",
+          "title": "代码审查",
+          "start": "10:30",
+          "end": "11:10",
+          "category": "工作"
+        },
+        {
+          "id": "dense-demo-20260719-08",
+          "title": "项目同步会议",
+          "details": "只讨论阻塞项和当天交付目标",
+          "start": "11:20",
+          "end": "12:00",
+          "category": "会议"
+        },
+        {
+          "id": "dense-demo-20260719-09",
+          "title": "午餐和短暂休息",
+          "start": "12:00",
+          "end": "12:40",
+          "category": "生活"
+        },
+        {
+          "id": "dense-demo-20260719-10",
+          "title": "设计用户与权限 API",
+          "details": "整理接口、错误码和鉴权边界",
+          "start": "13:00",
+          "end": "14:30",
+          "category": "后端"
+        },
+        {
+          "id": "dense-demo-20260719-11",
+          "title": "补充项目文档",
+          "start": "14:40",
+          "end": "15:20",
+          "category": "文档"
+        },
+        {
+          "id": "dense-demo-20260719-12",
+          "title": "清理收件箱和待办",
+          "start": "15:30",
+          "end": "16:00",
+          "category": "整理"
+        },
+        {
+          "id": "dense-demo-20260719-13",
+          "title": "验证一个很长的日程标题在列表卡片中是否仍然清晰易读",
+          "details": "这是专门用于观察两行标题、详情和分类共同出现时布局效果的虚构任务",
+          "start": "16:10",
+          "end": "17:00",
+          "category": "界面检查"
+        },
+        {
+          "id": "dense-demo-20260719-14",
+          "title": "力量训练",
+          "details": "深蹲、推举和核心训练",
+          "start": "17:20",
+          "end": "18:20",
+          "category": "锻炼"
+        },
+        {
+          "id": "dense-demo-20260719-15",
+          "title": "晚餐",
+          "start": "18:30",
+          "end": "19:10",
+          "category": "生活"
+        },
+        {
+          "id": "dense-demo-20260719-16",
+          "title": "六级听力复盘",
+          "start": "19:30",
+          "end": "20:10",
+          "category": "英语"
+        },
+        {
+          "id": "dense-demo-20260719-17",
+          "title": "阅读《代码整洁之道》",
+          "details": "阅读一章并记录三个要点",
+          "start": "20:20",
+          "end": "21:10",
+          "category": "阅读"
+        },
+        {
+          "id": "dense-demo-20260719-18",
+          "title": "整理明天计划",
+          "start": "21:20",
+          "end": "21:50",
+          "category": "计划"
+        },
+        {
+          "id": "dense-demo-20260719-19",
+          "title": "放松和准备休息",
+          "start": "22:00",
+          "end": "22:30",
+          "category": "生活"
+        }
+      ]
+    }
+  ]
+}
