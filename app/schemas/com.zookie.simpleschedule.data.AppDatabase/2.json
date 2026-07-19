@@ -1,0 +1,362 @@
+{
+  "formatVersion": 1,
+  "database": {
+    "version": 2,
+    "identityHash": "9d2b7927d68f00907786c478abd8b994",
+    "entities": [
+      {
+        "tableName": "schedule_tasks",
+        "createSql": "CREATE TABLE IF NOT EXISTS `${TABLE_NAME}` (`id` TEXT NOT NULL, `date` TEXT NOT NULL, `title` TEXT NOT NULL, `details` TEXT, `plannedStartMinutes` INTEGER NOT NULL, `plannedEndMinutes` INTEGER NOT NULL, `category` TEXT, `source` TEXT NOT NULL, `externalId` TEXT, `importBatchId` TEXT, `createdAt` INTEGER NOT NULL, `updatedAt` INTEGER NOT NULL, PRIMARY KEY(`id`), FOREIGN KEY(`importBatchId`) REFERENCES `import_batches`(`id`) ON UPDATE NO ACTION ON DELETE SET NULL )",
+        "fields": [
+          {
+            "fieldPath": "id",
+            "columnName": "id",
+            "affinity": "TEXT",
+            "notNull": true
+          },
+          {
+            "fieldPath": "date",
+            "columnName": "date",
+            "affinity": "TEXT",
+            "notNull": true
+          },
+          {
+            "fieldPath": "title",
+            "columnName": "title",
+            "affinity": "TEXT",
+            "notNull": true
+          },
+          {
+            "fieldPath": "details",
+            "columnName": "details",
+            "affinity": "TEXT"
+          },
+          {
+            "fieldPath": "plannedStartMinutes",
+            "columnName": "plannedStartMinutes",
+            "affinity": "INTEGER",
+            "notNull": true
+          },
+          {
+            "fieldPath": "plannedEndMinutes",
+            "columnName": "plannedEndMinutes",
+            "affinity": "INTEGER",
+            "notNull": true
+          },
+          {
+            "fieldPath": "category",
+            "columnName": "category",
+            "affinity": "TEXT"
+          },
+          {
+            "fieldPath": "source",
+            "columnName": "source",
+            "affinity": "TEXT",
+            "notNull": true
+          },
+          {
+            "fieldPath": "externalId",
+            "columnName": "externalId",
+            "affinity": "TEXT"
+          },
+          {
+            "fieldPath": "importBatchId",
+            "columnName": "importBatchId",
+            "affinity": "TEXT"
+          },
+          {
+            "fieldPath": "createdAt",
+            "columnName": "createdAt",
+            "affinity": "INTEGER",
+            "notNull": true
+          },
+          {
+            "fieldPath": "updatedAt",
+            "columnName": "updatedAt",
+            "affinity": "INTEGER",
+            "notNull": true
+          }
+        ],
+        "primaryKey": {
+          "autoGenerate": false,
+          "columnNames": [
+            "id"
+          ]
+        },
+        "indices": [
+          {
+            "name": "index_schedule_tasks_date_plannedStartMinutes",
+            "unique": false,
+            "columnNames": [
+              "date",
+              "plannedStartMinutes"
+            ],
+            "orders": [],
+            "createSql": "CREATE INDEX IF NOT EXISTS `index_schedule_tasks_date_plannedStartMinutes` ON `${TABLE_NAME}` (`date`, `plannedStartMinutes`)"
+          },
+          {
+            "name": "index_schedule_tasks_externalId",
+            "unique": true,
+            "columnNames": [
+              "externalId"
+            ],
+            "orders": [],
+            "createSql": "CREATE UNIQUE INDEX IF NOT EXISTS `index_schedule_tasks_externalId` ON `${TABLE_NAME}` (`externalId`)"
+          },
+          {
+            "name": "index_schedule_tasks_importBatchId",
+            "unique": false,
+            "columnNames": [
+              "importBatchId"
+            ],
+            "orders": [],
+            "createSql": "CREATE INDEX IF NOT EXISTS `index_schedule_tasks_importBatchId` ON `${TABLE_NAME}` (`importBatchId`)"
+          }
+        ],
+        "foreignKeys": [
+          {
+            "table": "import_batches",
+            "onDelete": "SET NULL",
+            "onUpdate": "NO ACTION",
+            "columns": [
+              "importBatchId"
+            ],
+            "referencedColumns": [
+              "id"
+            ]
+          }
+        ]
+      },
+      {
+        "tableName": "task_executions",
+        "createSql": "CREATE TABLE IF NOT EXISTS `${TABLE_NAME}` (`taskId` TEXT NOT NULL, `status` TEXT NOT NULL, `statusChangedAt` INTEGER NOT NULL, `completedAt` INTEGER, `annotation` TEXT, `annotationCreatedAt` INTEGER, `annotationUpdatedAt` INTEGER, PRIMARY KEY(`taskId`), FOREIGN KEY(`taskId`) REFERENCES `schedule_tasks`(`id`) ON UPDATE NO ACTION ON DELETE CASCADE )",
+        "fields": [
+          {
+            "fieldPath": "taskId",
+            "columnName": "taskId",
+            "affinity": "TEXT",
+            "notNull": true
+          },
+          {
+            "fieldPath": "status",
+            "columnName": "status",
+            "affinity": "TEXT",
+            "notNull": true
+          },
+          {
+            "fieldPath": "statusChangedAt",
+            "columnName": "statusChangedAt",
+            "affinity": "INTEGER",
+            "notNull": true
+          },
+          {
+            "fieldPath": "completedAt",
+            "columnName": "completedAt",
+            "affinity": "INTEGER"
+          },
+          {
+            "fieldPath": "annotation",
+            "columnName": "annotation",
+            "affinity": "TEXT"
+          },
+          {
+            "fieldPath": "annotationCreatedAt",
+            "columnName": "annotationCreatedAt",
+            "affinity": "INTEGER"
+          },
+          {
+            "fieldPath": "annotationUpdatedAt",
+            "columnName": "annotationUpdatedAt",
+            "affinity": "INTEGER"
+          }
+        ],
+        "primaryKey": {
+          "autoGenerate": false,
+          "columnNames": [
+            "taskId"
+          ]
+        },
+        "foreignKeys": [
+          {
+            "table": "schedule_tasks",
+            "onDelete": "CASCADE",
+            "onUpdate": "NO ACTION",
+            "columns": [
+              "taskId"
+            ],
+            "referencedColumns": [
+              "id"
+            ]
+          }
+        ]
+      },
+      {
+        "tableName": "task_revisions",
+        "createSql": "CREATE TABLE IF NOT EXISTS `${TABLE_NAME}` (`id` TEXT NOT NULL, `taskId` TEXT NOT NULL, `revisionNumber` INTEGER NOT NULL, `previousTitle` TEXT NOT NULL, `previousDetails` TEXT, `previousDate` TEXT NOT NULL, `previousStartMinutes` INTEGER NOT NULL, `previousEndMinutes` INTEGER NOT NULL, `previousCategory` TEXT, `changedAt` INTEGER NOT NULL, `changeSource` TEXT NOT NULL, PRIMARY KEY(`id`), FOREIGN KEY(`taskId`) REFERENCES `schedule_tasks`(`id`) ON UPDATE NO ACTION ON DELETE CASCADE )",
+        "fields": [
+          {
+            "fieldPath": "id",
+            "columnName": "id",
+            "affinity": "TEXT",
+            "notNull": true
+          },
+          {
+            "fieldPath": "taskId",
+            "columnName": "taskId",
+            "affinity": "TEXT",
+            "notNull": true
+          },
+          {
+            "fieldPath": "revisionNumber",
+            "columnName": "revisionNumber",
+            "affinity": "INTEGER",
+            "notNull": true
+          },
+          {
+            "fieldPath": "previousTitle",
+            "columnName": "previousTitle",
+            "affinity": "TEXT",
+            "notNull": true
+          },
+          {
+            "fieldPath": "previousDetails",
+            "columnName": "previousDetails",
+            "affinity": "TEXT"
+          },
+          {
+            "fieldPath": "previousDate",
+            "columnName": "previousDate",
+            "affinity": "TEXT",
+            "notNull": true
+          },
+          {
+            "fieldPath": "previousStartMinutes",
+            "columnName": "previousStartMinutes",
+            "affinity": "INTEGER",
+            "notNull": true
+          },
+          {
+            "fieldPath": "previousEndMinutes",
+            "columnName": "previousEndMinutes",
+            "affinity": "INTEGER",
+            "notNull": true
+          },
+          {
+            "fieldPath": "previousCategory",
+            "columnName": "previousCategory",
+            "affinity": "TEXT"
+          },
+          {
+            "fieldPath": "changedAt",
+            "columnName": "changedAt",
+            "affinity": "INTEGER",
+            "notNull": true
+          },
+          {
+            "fieldPath": "changeSource",
+            "columnName": "changeSource",
+            "affinity": "TEXT",
+            "notNull": true
+          }
+        ],
+        "primaryKey": {
+          "autoGenerate": false,
+          "columnNames": [
+            "id"
+          ]
+        },
+        "indices": [
+          {
+            "name": "index_task_revisions_taskId",
+            "unique": false,
+            "columnNames": [
+              "taskId"
+            ],
+            "orders": [],
+            "createSql": "CREATE INDEX IF NOT EXISTS `index_task_revisions_taskId` ON `${TABLE_NAME}` (`taskId`)"
+          },
+          {
+            "name": "index_task_revisions_taskId_revisionNumber",
+            "unique": true,
+            "columnNames": [
+              "taskId",
+              "revisionNumber"
+            ],
+            "orders": [],
+            "createSql": "CREATE UNIQUE INDEX IF NOT EXISTS `index_task_revisions_taskId_revisionNumber` ON `${TABLE_NAME}` (`taskId`, `revisionNumber`)"
+          }
+        ],
+        "foreignKeys": [
+          {
+            "table": "schedule_tasks",
+            "onDelete": "CASCADE",
+            "onUpdate": "NO ACTION",
+            "columns": [
+              "taskId"
+            ],
+            "referencedColumns": [
+              "id"
+            ]
+          }
+        ]
+      },
+      {
+        "tableName": "import_batches",
+        "createSql": "CREATE TABLE IF NOT EXISTS `${TABLE_NAME}` (`id` TEXT NOT NULL, `schemaVersion` INTEGER NOT NULL, `format` TEXT NOT NULL, `importedAt` INTEGER NOT NULL, `contentHash` TEXT NOT NULL, `taskCount` INTEGER NOT NULL, `sourceFileName` TEXT, PRIMARY KEY(`id`))",
+        "fields": [
+          {
+            "fieldPath": "id",
+            "columnName": "id",
+            "affinity": "TEXT",
+            "notNull": true
+          },
+          {
+            "fieldPath": "schemaVersion",
+            "columnName": "schemaVersion",
+            "affinity": "INTEGER",
+            "notNull": true
+          },
+          {
+            "fieldPath": "format",
+            "columnName": "format",
+            "affinity": "TEXT",
+            "notNull": true
+          },
+          {
+            "fieldPath": "importedAt",
+            "columnName": "importedAt",
+            "affinity": "INTEGER",
+            "notNull": true
+          },
+          {
+            "fieldPath": "contentHash",
+            "columnName": "contentHash",
+            "affinity": "TEXT",
+            "notNull": true
+          },
+          {
+            "fieldPath": "taskCount",
+            "columnName": "taskCount",
+            "affinity": "INTEGER",
+            "notNull": true
+          },
+          {
+            "fieldPath": "sourceFileName",
+            "columnName": "sourceFileName",
+            "affinity": "TEXT"
+          }
+        ],
+        "primaryKey": {
+          "autoGenerate": false,
+          "columnNames": [
+            "id"
+          ]
+        }
+      }
+    ],
+    "setupQueries": [
+      "CREATE TABLE IF NOT EXISTS room_master_table (id INTEGER PRIMARY KEY,identity_hash TEXT)",
+      "INSERT OR REPLACE INTO room_master_table (id,identity_hash) VALUES(42, '9d2b7927d68f00907786c478abd8b994')"
+    ]
+  }
+}

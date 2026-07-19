@@ -1,0 +1,28 @@
+{
+  "format": "jiancheng.plan",
+  "schemaVersion": 1,
+  "timezone": "Asia/Shanghai",
+  "days": [
+    {
+      "date": "2026-07-20",
+      "tasks": [
+        {
+          "id": "2026-07-20-backend-01",
+          "title": "学习 Spring 事务",
+          "details": "理解事务传播和常见失效场景",
+          "start": "09:00",
+          "end": "10:30",
+          "category": "后端"
+        },
+        {
+          "id": "2026-07-20-exercise-01",
+          "title": "力量训练",
+          "details": "按训练计划完成当天动作",
+          "start": "17:00",
+          "end": "18:00",
+          "category": "锻炼"
+        }
+      ]
+    }
+  ]
+}

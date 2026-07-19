@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <!-- Compatibility permission is unnecessary: the app registers no dynamic receiver. -->
+    <permission
+        android:name="com.zookie.simpleschedule.DYNAMIC_RECEIVER_NOT_EXPORTED_PERMISSION"
+        tools:node="remove" />
+    <uses-permission
+        android:name="com.zookie.simpleschedule.DYNAMIC_RECEIVER_NOT_EXPORTED_PERMISSION"
+        tools:node="remove" />
+
+    <application
+        android:name=".JianChengApplication"
+        android:allowBackup="false"
+        android:dataExtractionRules="@xml/data_extraction_rules"
+        android:fullBackupContent="@xml/backup_rules"
+        android:icon="@drawable/ic_launcher_foreground"
+        android:label="@string/app_name"
+        android:roundIcon="@drawable/ic_launcher_foreground"
+        android:supportsRtl="true"
+        android:theme="@style/Theme.JianCheng">
+        <activity
+            android:name=".MainActivity"
+            android:exported="true">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+
+        <!-- Remove transitive components for features this single-process app does not use. -->
+        <provider
+            android:name="androidx.startup.InitializationProvider"
+            tools:ignore="MissingClass"
+            tools:node="remove" />
+        <service
+            android:name="androidx.room.MultiInstanceInvalidationService"
+            tools:ignore="MissingClass"
+            tools:node="remove" />
+        <receiver
+            android:name="androidx.profileinstaller.ProfileInstallReceiver"
+            tools:ignore="MissingClass"
+            tools:node="remove" />
+
+    </application>
+
+</manifest>
